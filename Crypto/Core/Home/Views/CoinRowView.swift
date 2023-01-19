@@ -31,7 +31,7 @@ struct CoinRowView: View {
                     .fontWeight(.semibold)
                     .padding(.leading, 4)
                 
-                Text("\(coin.symbol.uppercased())")
+                Text(coin.symbol.uppercased())
                     .font(.caption)
                     .padding(.leading, 6)
             }
@@ -40,7 +40,7 @@ struct CoinRowView: View {
             Spacer()
             
             //Coin Price
-            VStack(alignment: .leading, spacing: 4){
+            VStack(alignment: .trailing, spacing: 4){
                 Text("\(coin.currentPrice.tocCurrency())")
                     .font(.subheadline)
                     .fontWeight(.semibold)
