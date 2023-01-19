@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CoinRowView: View {
     let coin: Coin
@@ -17,7 +18,8 @@ struct CoinRowView: View {
                 .font(.caption)
                 .foregroundColor(.gray)
             //image
-            Image(systemName: "bitcoinsign.circle.fill")
+            KFImage(URL(string: coin.image))
+                .resizable()
                 .scaledToFit()
                 .frame(width: 32, height: 32)
                 .foregroundColor(.orange)
@@ -39,15 +41,15 @@ struct CoinRowView: View {
             
             //Coin Price
             VStack(alignment: .leading, spacing: 4){
-                Text("\(coin.currentPrice)")
+                Text("\(coin.currentPrice.tocCurrency())")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .padding(.leading, 4)
                 
-                Text("\(coin.priceChangePercentage24H)%")
+                Text(coin.priceChangePercentage24H.toPercentageString())
                     .font(.caption)
                     .padding(.leading, 6)
-                    .foregroundColor(.red)
+                    .foregroundColor(coin.priceChangePercentage24H > 0 ? .green : .red)
             }
         }
         .padding(.horizontal)
